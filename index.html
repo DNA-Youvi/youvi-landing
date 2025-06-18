@@ -1,211 +1,118 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DNA YOUVI PRO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pemesanan</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #000428, #004e92);
-      color: #fff;
-    }
-    header {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       padding: 2rem;
-      text-align: center;
     }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-    p.lead {
-      font-size: 1.25rem;
-      color: #ccc;
-    }
-    .features, .pricing, .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 3rem;
-    }
-    .feature-box, .pricing-box, .testimonial-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      border: 1px solid #ffffff20;
-    }
-    .feature-box h3, .pricing-box h3, .testimonial-box h3 {
-      margin-top: 0;
-      color: #00d4ff;
-    }
-    .cta {
-      text-align: center;
-      margin-top: 3rem;
-    }
-    .cta a {
-      background: #00d4ff;
-      color: #000;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      font-weight: bold;
-      border-radius: 0.5rem;
-    }
-    footer {
+    .form-box {
+      max-width: 500px;
+      margin: auto;
+      background: white;
       padding: 2rem;
-      text-align: center;
-      background: #000316;
-      font-size: 0.9rem;
-      color: #aaa;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      color: #00d4ff;
-    }
-    .testimonial-box p {
-      font-style: italic;
-    }
-    .testimonial-box span {
+    label {
       display: block;
       margin-top: 1rem;
-      font-weight: bold;
-      color: #ffd700;
     }
-    .video-frame {
+    input, select, button {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      margin-top: 1.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .alert {
       text-align: center;
-      margin: 3rem auto;
-    }
-    .video-frame iframe {
-      width: 90%;
-      max-width: 720px;
-      height: 405px;
-      border: 5px solid #00d4ff;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px #00d4ff50;
+      margin-top: 1rem;
+      color: green;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>DNA YOUVI PRO</h1>
-    <p class="lead">Tingkatkan views YouTube Anda secara otomatis, aman, dan efisien</p>
-  </header>
+  <div class="form-box">
+    <h2>Form Pemesanan</h2>
+    <form id="formPemesanan" onsubmit="handleSubmit(event)">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" required>
 
-  <div class="video-frame">
-    <iframe src="https://www.youtube.com/embed/GgVWVvjYCUM" title="Video Promosi DNA YOUVI PRO" frameborder="0" allowfullscreen></iframe>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="paket">Pilih Paket:</label>
+      <select id="paket">
+        <option value="Basic">Basic - Rp99.000</option>
+        <option value="Premium">Premium - Rp149.000</option>
+        <option value="Pro">Pro - Rp199.000</option>
+      </select>
+
+      <button type="submit">Lanjut ke Pembayaran</button>
+    </form>
+    <div class="alert" id="alertBox"></div>
   </div>
 
-  <section class="features">
-    <div class="feature-box">
-      <h3>Otomatisasi Penayangan</h3>
-      <p>Putar video panjang, Shorts, dan rekomendasi hanya dengan satu klik.</p>
-    </div>
-    <div class="feature-box">
-      <h3>Proxy & Mode Headless</h3>
-      <p>Gunakan proxy dari file dan jalankan dalam mode headless atau normal.</p>
-    </div>
-    <div class="feature-box">
-      <h3>Validasi Lisensi Online</h3>
-      <p>Keamanan lisensi melalui Google Apps Script untuk perlindungan pengguna.</p>
-    </div>
-    <div class="feature-box">
-      <h3>Statistik Real-Time</h3>
-      <p>Lacak video yang ditonton, waktu tayang, dan proxy yang aktif langsung dari aplikasi.</p>
-    </div>
-    <div class="feature-box">
-      <h3>Traffic Organik Simulatif</h3>
-      <p>Simulasi pencarian & klik YouTube untuk meningkatkan CTR & watchtime.</p>
-    </div>
-  </section>
-
-  <h2 class="section-title">💬 Testimoni Pengguna</h2>
-  <section class="testimonials">
-    <div class="testimonial-box">
-      <p>"Sejak pakai YOUVI PRO, channel saya naik drastis! Viewer organik terasa nyata."</p>
-      <span>— Riko, YouTuber Edukasi</span>
-    </div>
-    <div class="testimonial-box">
-      <p>"Fitur otomatisasinya luar biasa. Praktis banget buat push video baru saya."</p>
-      <span>— Anita, Content Creator Shorts</span>
-    </div>
-    <div class="testimonial-box">
-      <p>"Trial 2 hari aja udah dapet banyak insight, akhirnya langsung langganan!"</p>
-      <span>— Danu, Vlogger Harian</span>
-    </div>
-  </section>
-
-  <h2 class="section-title">💸 Paket Harga</h2>
-  <section class="pricing">
-    <div class="pricing-box">
-      <h3>Starter</h3>
-      <p>Rp 299.000 / 1 Bulan<br>✅ 1 Device<br>✅ 10 Video / Hari<br>✅ Support Telegram</p>
-    </div>
-    <div class="pricing-box">
-      <h3>Pro</h3>
-      <p>Rp 750.000 / 3 Bulan<br>✅ 3 Device<br>✅ 50 Video / Hari<br>✅ Mode Headless<br>✅ Prioritas Support</p>
-    </div>
-    <div class="pricing-box">
-      <h3>Enterprise</h3>
-      <p>Rp 1.500.000 / 6 Bulan<br>✅ Unlimited Device<br>✅ Unlimited Video<br>✅ Full Fitur & Statistik<br>✅ Konsultasi Langsung</p>
-    </div>
-  </section>
-
-  <h2 class="section-title">📝 Form Pemesanan</h2>
-  <section style="text-align: center; padding: 2rem;">
-    <form id="orderForm">
-      <input type="text" name="nama" placeholder="Nama Anda" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
-      <br>
-      <input type="text" name="kontak" placeholder="Email / No WhatsApp" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
-      <br>
-      <select name="paket" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
-        <option value="">Pilih Paket</option>
-        <option value="Starter">Starter - Rp299.000</option>
-        <option value="Pro">Pro - Rp500.000</option>
-        <option value="Enterprise">Enterprise - Rp1.000.000</option>
-      </select>
-      <br>
-      <button type="submit" style="background: #00d4ff; color: #000; font-weight: bold; padding: 1rem 2rem; border: none; border-radius: 0.5rem; cursor: pointer;">
-        Lanjut ke Pembayaran
-      </button>
-    </form>
-  </section>
-
   <script>
-    document.getElementById('orderForm').addEventListener('submit', function (e) {
+    function handleSubmit(e) {
       e.preventDefault();
+      const nama = document.getElementById('nama').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const paket = document.getElementById('paket').value;
 
-      const form = e.target;
-      const nama = form.nama.value;
-      const kontak = form.kontak.value;
-      const paket = form.paket.value;
+      if (!nama || !email) {
+        alert("Harap isi semua data pemesanan.");
+        return;
+      }
 
-      const hargaMap = {
-        'Starter': 299000,
-        'Pro': 750000,
-        'Enterprise': 1500000
+      let harga = 0;
+      if (paket === 'Basic') harga = 99000;
+      else if (paket === 'Premium') harga = 149000;
+      else if (paket === 'Pro') harga = 199000;
+
+      const unik = Math.floor(Math.random() * 90 + 10);
+      const total = harga + unik;
+
+      const data = {
+        nama,
+        email,
+        paket,
+        total
       };
-      const harga = hargaMap[paket];
-      const kodeUnik = Math.floor(100 + Math.random() * 900);
-      const totalBayar = harga + kodeUnik;
 
-      fetch('YOUR_GOOGLE_SCRIPT_URL', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ nama, kontak, paket, total: totalBayar, kodeUnik })
+      document.getElementById("alertBox").innerText = "Mengirim data...";
+
+      fetch("https://script.google.com/macros/s/AKfycbxHpOQgJawxSNWAaTY4B93OiAPAZKNtfh4mp5L7CQ_r9vzQ_LXgOEh1ibyDnMXx5rw9_w/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(() => {
+        document.getElementById("alertBox").innerText = "Berhasil! Mengarahkan ke halaman pembayaran...";
+        setTimeout(() => {
+          window.location.href = `pembayaran.html?nama=${encodeURIComponent(nama)}&email=${encodeURIComponent(email)}&paket=${encodeURIComponent(paket)}&total=${total}`;
+        }, 1200);
+      })
+      .catch(() => {
+        document.getElementById("alertBox").innerText = "Gagal mengirim data. Silakan coba lagi.";
       });
-
-      window.location.href = `/pembayaran.html?nama=${encodeURIComponent(nama)}&paket=${paket}&total=${totalBayar}&rekening=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana`;
-    });
+    }
   </script>
-
-  <footer>
-    <p>Hubungi Kami: @agieldoanks (Telegram) | Instagram & TikTok: @dna.dsign</p>
-    <p>&copy; 2025 DNA YOUVI PRO. All Rights Reserved.</p>
-  </footer>
 </body>
 </html>
