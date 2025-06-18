@@ -87,6 +87,12 @@
       border-radius: 1rem;
       box-shadow: 0 0 20px #00d4ff50;
     }
+    .order-summary {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -176,6 +182,7 @@
         Lanjut ke Pembayaran
       </button>
     </form>
+    <div class="order-summary" id="orderSummary"></div>
   </section>
 
   <script>
@@ -203,6 +210,8 @@
       }
 
       const totalBayar = Math.round(harga + kodeUnik);
+
+      document.getElementById('orderSummary').innerText = `Total Tagihan Anda: Rp ${totalBayar.toLocaleString('id-ID')} (termasuk kode unik)`;
 
       fetch('https://script.google.com/macros/s/AKfycbxHpOQgJawxSNWAaTY4B93OiAPAZKNtfh4mp5L7CQ_r9vzQ_LXgOEh1ibyDnMXx5rw9_w/exec', {
         method: 'POST',
