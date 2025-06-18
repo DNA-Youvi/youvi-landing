@@ -46,6 +46,7 @@
 <body>
   <div class="box">
     <h1>Terima kasih atas pemesanan Anda!</h1>
+    <p><strong id="emailPemesan">Email:</strong></p>
     <p>Silakan lakukan pembayaran sesuai nominal di bawah ini:</p>
     <p class="highlight" id="totalBayar">Rp -</p>
 
@@ -70,7 +71,10 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const total = params.get('total');
+    const email = params.get('email');
+
     document.getElementById('totalBayar').textContent = `Rp ${parseInt(total).toLocaleString('id-ID')}`;
+    document.getElementById('emailPemesan').innerHTML = `<strong>Email:</strong> ${email}`;
   </script>
 </body>
 </html>
