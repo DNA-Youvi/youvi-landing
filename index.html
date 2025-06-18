@@ -159,7 +159,9 @@
     <form id="orderForm">
       <input type="text" name="nama" placeholder="Nama Anda" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
       <br>
-      <input type="text" name="kontak" placeholder="Email / No WhatsApp" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
+      <input type="email" name="email" placeholder="Email Aktif Anda" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
+      <br>
+      <input type="text" name="kontak" placeholder="No WhatsApp Aktif" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
       <br>
       <select name="paket" required style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
         <option value="">Pilih Paket</option>
@@ -180,6 +182,7 @@
 
       const form = e.target;
       const nama = form.nama.value;
+      const email = form.email.value;
       const kontak = form.kontak.value;
       const paket = form.paket.value;
 
@@ -192,11 +195,11 @@
       const kodeUnik = Math.floor(100 + Math.random() * 900);
       const totalBayar = harga + kodeUnik;
 
-      fetch('https://script.google.com/macros/s/AKfycbxCzPrdxs2vkCvyfnaMqLNvF0nnMVsye3ov89bivtMwHtQv01lObUQmLtAQQvcxvRkF/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbxHpOQgJawxSNWAaTY4B93OiAPAZKNtfh4mp5L7CQ_r9vzQ_LXgOEh1ibyDnMXx5rw9_w/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ nama, kontak, paket, total: totalBayar, kodeUnik })
+        body: new URLSearchParams({ nama, email, kontak, paket, total: totalBayar, kodeUnik })
       });
 
       window.location.href = `/pembayaran.html?nama=${encodeURIComponent(nama)}&paket=${paket}&total=${totalBayar}&rekening=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana`;
