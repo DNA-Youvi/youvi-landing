@@ -33,13 +33,21 @@
       margin-top: 1rem;
       font-size: 1rem;
     }
-    .qr {
-      margin-top: 1.5rem;
-    }
     .timer {
       margin-top: 1rem;
       font-size: 0.95rem;
       color: #ccc;
+    }
+    .wa-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      background-color: #25D366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -56,25 +64,29 @@
       <p>a/n <strong>Septian Gilang Permana</strong></p>
     </div>
 
-    <div class="qr">
-      <p>Atau scan QRIS untuk membayar:</p>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?data=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana&size=200x200" alt="QR Code Pembayaran">
-    </div>
-
     <div class="timer">
       <p><strong>Harap lakukan pembayaran dalam waktu 2 jam</strong></p>
     </div>
 
-    <p>Setelah transfer, silakan konfirmasi via Telegram ke <strong>@agieldoanks</strong></p>
+    <p>Setelah transfer, silakan konfirmasi via WhatsApp:</p>
+    <a id="wa-link" class="wa-btn" href="#" target="_blank">
+      ✅ Konfirmasi via WhatsApp
+    </a>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const total = params.get('total');
     const email = params.get('email');
+    const nama = params.get('nama');
+    const paket = params.get('paket');
 
     document.getElementById('totalBayar').textContent = `Rp ${parseInt(total).toLocaleString('id-ID')}`;
     document.getElementById('emailPemesan').innerHTML = `<strong>Email:</strong> ${email}`;
+
+    const waMessage = `Halo, saya sudah melakukan pembayaran untuk DNA YOUVI PRO.%0ANama: ${encodeURIComponent(nama)}%0AEmail: ${encodeURIComponent(email)}%0APaket: ${encodeURIComponent(paket)}%0ATotal Transfer: Rp ${parseInt(total).toLocaleString('id-ID')}`;
+    const waLink = `https://wa.me/6283829392370?text=${waMessage}`;
+    document.getElementById("wa-link").href = waLink;
   </script>
 </body>
 </html>
