@@ -146,11 +146,11 @@
     </div>
     <div class="pricing-box">
       <h3>Pro</h3>
-      <p>Rp 500.000 / 3 Bulan<br>✅ 3 Device<br>✅ 50 Video / Hari<br>✅ Mode Headless<br>✅ Prioritas Support</p>
+      <p>Rp 750.000 / 3 Bulan<br>✅ 3 Device<br>✅ 50 Video / Hari<br>✅ Mode Headless<br>✅ Prioritas Support</p>
     </div>
     <div class="pricing-box">
       <h3>Enterprise</h3>
-      <p>Rp 1.000.000 / 6 Bulan<br>✅ Unlimited Device<br>✅ Unlimited Video<br>✅ Full Fitur & Statistik<br>✅ Konsultasi Langsung</p>
+      <p>Rp 1.500.000 / 6 Bulan<br>✅ Unlimited Device<br>✅ Unlimited Video<br>✅ Full Fitur & Statistik<br>✅ Konsultasi Langsung</p>
     </div>
   </section>
 
@@ -170,6 +170,8 @@
         <option value="Enterprise">Enterprise - Rp1.500.000</option>
       </select>
       <br>
+      <input type="text" name="diskon" placeholder="Kode Diskon (opsional)" style="padding: 1rem; width: 90%; max-width: 400px; margin-bottom: 1rem; border-radius: 8px; border: none;">
+      <br>
       <button type="submit" style="background: #00d4ff; color: #000; font-weight: bold; padding: 1rem 2rem; border: none; border-radius: 0.5rem; cursor: pointer;">
         Lanjut ke Pembayaran
       </button>
@@ -185,24 +187,31 @@
       const email = form.email.value;
       const kontak = form.kontak.value;
       const paket = form.paket.value;
+      const kodeDiskon = form.diskon.value.trim().toUpperCase();
 
       const hargaMap = {
         'Starter': 299000,
         'Pro': 750000,
         'Enterprise': 1500000
       };
-      const harga = hargaMap[paket];
+      let harga = hargaMap[paket];
+
       const kodeUnik = Math.floor(100 + Math.random() * 900);
-      const totalBayar = harga + kodeUnik;
+
+      if (kodeDiskon === 'YOUVIHEMAT') {
+        harga = harga - (harga * 0.15);
+      }
+
+      const totalBayar = Math.round(harga + kodeUnik);
 
       fetch('https://script.google.com/macros/s/AKfycbxHpOQgJawxSNWAaTY4B93OiAPAZKNtfh4mp5L7CQ_r9vzQ_LXgOEh1ibyDnMXx5rw9_w/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ nama, email, kontak, paket, total: totalBayar, kodeUnik })
+        body: new URLSearchParams({ nama, email, kontak, paket, total: totalBayar, kodeUnik, diskon: kodeDiskon })
       });
 
-      window.location.href = `/pembayaran.html?nama=${encodeURIComponent(nama)}&paket=${paket}&total=${totalBayar}&rekening=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana`;
+      window.location.href = `/pembayaran.html?nama=${encodeURIComponent(nama)}&email=${encodeURIComponent(email)}&paket=${paket}&total=${totalBayar}&diskon=${kodeDiskon}&rekening=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana`;
     });
   </script>
 
