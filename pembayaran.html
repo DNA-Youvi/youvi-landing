@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman Pembayaran</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+    }
+    .box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      margin: 2rem auto;
+      border: 1px solid #ffffff20;
+    }
+    .highlight {
+      color: #00d4ff;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .rekening {
+      background: #000;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    .qr {
+      margin-top: 1.5rem;
+    }
+    .timer {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Terima kasih atas pemesanan Anda!</h1>
+    <p>Silakan lakukan pembayaran sesuai nominal di bawah ini:</p>
+    <p class="highlight" id="totalBayar">Rp -</p>
+
+    <p>Transfer ke rekening berikut:</p>
+    <div class="rekening">
+      <p>BCA: <strong>5150298042</strong></p>
+      <p>a/n <strong>Septian Gilang Permana</strong></p>
+    </div>
+
+    <div class="qr">
+      <p>Atau scan QRIS untuk membayar:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana&size=200x200" alt="QR Code Pembayaran">
+    </div>
+
+    <div class="timer">
+      <p><strong>Harap lakukan pembayaran dalam waktu 2 jam</strong></p>
+    </div>
+
+    <p>Setelah transfer, silakan konfirmasi via Telegram ke <strong>@agieldoanks</strong></p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const total = params.get('total');
+    document.getElementById('totalBayar').textContent = `Rp ${parseInt(total).toLocaleString('id-ID')}`;
+  </script>
+</body>
+</html>
