@@ -227,6 +227,7 @@
         body: new URLSearchParams({ nama, email, kontak, paket, total: totalBayar, kodeUnik, diskon: kodeDiskon })
       });
 
+
       summaryDiv.addEventListener('click', function (e) {
         if (e.target.id === 'lanjutPembayaranBtn') {
           const url = `/pembayaran.html?nama=${encodeURIComponent(nama)}&email=${encodeURIComponent(email)}&paket=${paket}&total=${totalBayar}&diskon=${kodeDiskon}&rekening=${encodeURIComponent(rekening)}`;
