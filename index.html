@@ -210,31 +210,28 @@
       }
 
       const totalBayar = Math.round(harga + kodeUnik);
+      const rekening = 'BCA 5150298042 a/n Septian Gilang Permana';
 
-      document.getElementById('orderSummary').innerText = `Total Tagihan Anda: Rp ${totalBayar.toLocaleString('id-ID')} (termasuk kode unik)`;
+      const summaryDiv = document.getElementById('orderSummary');
+      summaryDiv.innerHTML = `
+        <p>Total Tagihan Anda: <strong>Rp ${totalBayar.toLocaleString('id-ID')}</strong> (termasuk kode unik)</p>
+        <button id="lanjutPembayaranBtn" style="margin-top:1rem;background:#00d4ff;color:#000;font-weight:bold;padding:1rem 2rem;border:none;border-radius:0.5rem;cursor:pointer;">
+          Lanjut ke Pembayaran
+        </button>
+      `;
 
       fetch('https://script.google.com/macros/s/AKfycbxHpOQgJawxSNWAaTY4B93OiAPAZKNtfh4mp5L7CQ_r9vzQ_LXgOEh1ibyDnMXx5rw9_w/exec', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nama,
-          email,
-          kontak,
-          paket,
-          total: totalBayar,
-          kodeUnik,
-          diskon: kodeDiskon,
-          status: 'Belum Bayar'
-        })
-      })
-      .then(() => {
-        window.location.href = `/pembayaran.html?nama=${encodeURIComponent(nama)}&email=${encodeURIComponent(email)}&paket=${paket}&total=${totalBayar}&diskon=${kodeDiskon}&rekening=BCA%205150298042%20a/n%20Septian%20Gilang%20Permana`;
-      })
-      .catch(err => {
-        alert("Terjadi kesalahan saat mengirim data.");
-        console.error(err);
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ nama, email, kontak, paket, total: totalBayar, kodeUnik, diskon: kodeDiskon })
+      });
+
+      summaryDiv.addEventListener('click', function (e) {
+        if (e.target.id === 'lanjutPembayaranBtn') {
+          const url = `/pembayaran.html?nama=${encodeURIComponent(nama)}&email=${encodeURIComponent(email)}&paket=${paket}&total=${totalBayar}&diskon=${kodeDiskon}&rekening=${encodeURIComponent(rekening)}`;
+          window.location.href = url;
+        }
       });
     });
   </script>
